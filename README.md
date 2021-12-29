@@ -1,6 +1,8 @@
 # ms-ui-template
+
 Micro Server UI Template
 
+![./docs/assets/app.png](./docs/assets/app.png)
 
 # Lancement de l'api mock
 
