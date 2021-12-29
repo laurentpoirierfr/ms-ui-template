@@ -1,0 +1,39 @@
+[
+    { 
+        "name": "Home",
+        "type": "standard",
+        "href": "#"
+    },
+    { 
+        "name": "Action",
+        "type": "list",
+        "items": [
+            {
+                "name": "Start",
+                "type": ""
+            },
+            {
+                "name": "Stop",
+                "type": ""
+            }
+        ]
+    },
+    { 
+        "name": "Help",
+        "type": "list",
+        "items": [
+            {
+                "name": "Swagger",
+                "type": ""
+            },
+            {
+                "name": "Azure",
+                "type": ""
+            },
+            {
+                "name": "Quality",
+                "type": ""
+            }
+        ]
+    }
+]
