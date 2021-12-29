@@ -61,6 +61,49 @@ app.get('/api/v1/menu', (req, res) => {
 });
 ```
 
+## Simulation de la console SSE
+
+```javascript
+app.get('/api/v1/console', (req, res) => {
+    res.setHeader('Cache-Control', 'no-cache');
+    res.setHeader('Content-Type', 'text/event-stream');
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Connection', 'keep-alive');
+    res.flushHeaders(); // flush the headers to establish SSE with client
+
+    let counter = 0;
+    let interValID = setInterval(() => {
+        counter++;
+        if (counter >= 10) {
+            clearInterval(interValID);
+            res.end(); // terminates SSE session
+            return;
+        }
+
+        messages = [
+            { type: "error", message : "Une erreur est survenue durant le traitement !" },
+            { type: "info", message : "flush the headers to establish SSE with client" },
+            { type: "info", message : "flush the headers to establish SSE with client" },
+            { type: "info", message : "flush the headers to establish SSE with client" },
+            { type: "warning", message : "flush the headers to establish SSE with client" },
+            { type: "info", message : "flush the headers to establish SSE with client" }
+        ];
+
+        var message = messages[Math.floor(Math.random()*messages.length)];
+
+        res.write(`data: ${JSON.stringify( message )}\n\n`); // res.write() instead of res.send()
+
+    }, 1000);
+
+    // If client closes connection, stop sending events
+    res.on('close', () => {
+        console.log('client dropped me');
+        clearInterval(interValID);
+        res.end();
+    });
+});
+```
+
 
 # Configuration du proxy Vuejs
 
