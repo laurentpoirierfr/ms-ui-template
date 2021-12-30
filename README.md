@@ -127,6 +127,41 @@ module.exports = {
   }
 ```
 
-# Todos
+# Menu dynamique 
 
-* [] Dynamiser le menu, en utilisant la route **/api/v1/menu**
+Route **/api/v1/menu**
+
+```json
+[
+    { 
+        "name": "Action",
+        "items": [
+            {
+                "name": "Start",
+                "href": "/start"
+            },
+            {
+                "name": "Stop",
+                "href": "/stop"
+            }
+        ]
+    },
+    { 
+        "name": "Help",
+        "items": [
+            {
+                "name": "Swagger",
+                "href": "/api-docs"
+            },
+            {
+                "name": "Azure",
+                "href": "/azure"
+            },
+            {
+                "name": "Quality",
+                "href": "/quality"
+            }
+        ]
+    }
+]
+```
