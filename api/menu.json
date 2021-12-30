@@ -1,38 +1,31 @@
 [
     { 
-        "name": "Home",
-        "type": "standard",
-        "href": "#"
-    },
-    { 
         "name": "Action",
-        "type": "list",
         "items": [
             {
                 "name": "Start",
-                "type": ""
+                "href": "/start"
             },
             {
                 "name": "Stop",
-                "type": ""
+                "href": "/stop"
             }
         ]
     },
     { 
         "name": "Help",
-        "type": "list",
         "items": [
             {
                 "name": "Swagger",
-                "type": ""
+                "href": "/api-docs"
             },
             {
                 "name": "Azure",
-                "type": ""
+                "href": "/azure"
             },
             {
                 "name": "Quality",
-                "type": ""
+                "href": "/quality"
             }
         ]
     }

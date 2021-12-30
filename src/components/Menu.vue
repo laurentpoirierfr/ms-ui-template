@@ -1,45 +1,26 @@
 <template>
   <mdb-navbar color="primary" dark>
     <mdb-navbar-brand href="https://mdbootstrap.com/">
-      [AvA]
+     Datahub
     </mdb-navbar-brand>
     <mdb-navbar-toggler>
       <mdb-navbar-nav>
         <!-- ====================================================== -->
         <mdb-nav-item href="#" active>Home</mdb-nav-item>
         <!-- ====================================================== -->
-        <mdb-dropdown tag="li" class="nav-item">
-          <mdb-dropdown-toggle
-            tag="a"
-            navLink
-            color="primary"
-            slot="toggle"
-            waves-fixed
-            >Actions</mdb-dropdown-toggle
-          >
-          <mdb-dropdown-menu>
-            <mdb-dropdown-item>Start</mdb-dropdown-item>
-            <mdb-dropdown-item>Stop</mdb-dropdown-item>
+        <mdb-dropdown tag="li" class="nav-item" v-for="menu in menus" :key="menu.name">
+          <mdb-dropdown-toggle tag="a" navLink color="primary" slot="toggle" waves-fixed>
+            {{ menu.name }}
+          </mdb-dropdown-toggle> 
+          <!-- ====================================================== -->
+          <mdb-dropdown-menu v-for="item in menu.items" :key="item.name">
+            <mdb-dropdown-item  v-bind:href="item.href">
+              {{ item.name }}
+            </mdb-dropdown-item>
           </mdb-dropdown-menu>
+          <!-- ====================================================== -->
         </mdb-dropdown>
         <!-- ====================================================== -->
-        <mdb-dropdown tag="li" class="nav-item">
-          <mdb-dropdown-toggle
-            tag="a"
-            navLink
-            color="primary"
-            slot="toggle"
-            waves-fixed
-            >Help</mdb-dropdown-toggle
-          >
-          <mdb-dropdown-menu>
-            <mdb-dropdown-item>Swagger</mdb-dropdown-item>
-            <mdb-dropdown-item>Azure</mdb-dropdown-item>
-            <mdb-dropdown-item>Quality</mdb-dropdown-item>
-          </mdb-dropdown-menu>
-        </mdb-dropdown>
-        <!-- ====================================================== -->
-
       </mdb-navbar-nav>
     </mdb-navbar-toggler>
   </mdb-navbar>
@@ -61,6 +42,28 @@ import {
 
 export default {
   name: "NavbarPage",
+  data() {
+    return {
+      menus: [
+        { 
+          name : "Help",
+          items: [
+            { name: "Swagger", href: "/api-docs" }
+          ]
+        }
+      ]
+    };
+  },
+  mounted() {
+    this.initialize();
+  },
+  methods: {
+    initialize() {
+      this.axios.get("/api/v1/menu").then((res) => {
+        this.menus = res.data;
+      });
+    },
+  },
   components: {
     mdbNavbar,
     mdbNavbarBrand,
